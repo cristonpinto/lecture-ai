@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #09090b;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 86% 8%, rgba(59, 130, 246, 0.42), transparent 31rem),
+    radial-gradient(circle at 12% 86%, rgba(139, 92, 246, 0.28), transparent 28rem),
+    linear-gradient(145deg, #08090d 0%, #0d1225 42%, #0a0a12 72%, #09090b 100%);
+  color: #ffffff;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -18vmax;
+  pointer-events: none;
+}
+
+body::before {
+  z-index: -3;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(37, 99, 235, 0.32), transparent 24rem),
+    radial-gradient(circle at 16% 78%, rgba(124, 58, 237, 0.18), transparent 23rem),
+    radial-gradient(circle at 48% 48%, rgba(14, 165, 233, 0.11), transparent 28rem);
+  filter: blur(24px);
+  animation: glow-drift 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  z-index: 50;
+  opacity: 0.055;
+  mix-blend-mode: screen;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.42) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+  background-size: 3px 3px;
+  animation: grain 7s steps(10) infinite;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@layer utilities {
+  .glass {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(24, 24, 27, 0.45);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .ambient-grid {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: radial-gradient(circle at center, black, transparent 76%);
+  }
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(2%, 1.5%, 0) scale(1.06);
+  }
+}
+
+@keyframes grain {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-24px, 18px);
+  }
+}
